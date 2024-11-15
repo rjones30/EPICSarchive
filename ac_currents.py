@@ -13,7 +13,6 @@ import math
 #import numpy
 from ROOT import *
 
-sys.path.append("/home/halld/offline/scalers")
 import mya
 
 rcdb_source = "mysql://rcdb@hallddb.jlab.org/rcdb"
