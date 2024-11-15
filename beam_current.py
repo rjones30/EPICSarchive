@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # beam_currents.py - simple script to extract beam current
 #                    from the EPICS archive and plot it.
@@ -50,7 +50,7 @@ def tfill(datetime, duration, tree=None, epics_var="IBCAD00CRCUR6", db="ops"):
 
    epicstime = mya.time_string_to_epics(datetime)
    beam_cur = mya.lookup(epics_var, deployment=db)
-   curs, times = mya.fetch(beam_cur, epicstime, duration)
+   curs, times = mya.fetch(beam_cur, epicstime, duration, deployment=db)
    print("fetched", len(curs), "current values,", len(times), "times.")
    if len(times) > 0:
       print("  ", mya.time_epics_to_string(times[0]), curs[0])

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # ac_currents.py - simple script to extract AC currents
 #                  from the EPICS archive and plot them.

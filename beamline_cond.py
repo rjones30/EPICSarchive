@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # beamline_cond.py - simple script to scan a run range in rcdb
 #                    and list runs with different beamline settings,
@@ -33,10 +33,10 @@ for runrange in scanruns:
          continue
       if tpolconv != converter or collim != collimator:
          if firstrun:
-            print firstrun,
+            print(firstrun, end='')
             if lastrun:
-              print "-", lastrun,
-            print ":", converter, collimator
+              print("-", lastrun, end='')
+            print(":", converter, collimator)
          converter = tpolconv
          collimator = collim
          firstrun = run.number

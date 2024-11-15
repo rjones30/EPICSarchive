@@ -53,7 +53,6 @@ db = {}
 
 tzlocal = pytz.timezone("America/New_York")
 
-opsmya_start = 0x5a8e08000000000
 epics_second = (1 << 28)
 epics_cache = {'mya descriptors': {}}
 
@@ -97,7 +96,7 @@ def lookup(varname, deployment="ops"):
    epics_cache['mya descriptors'][varname] = descr
    return descr
 
-def fetch(descr, t0, dt=0, cond=None):
+def fetch(descr, t0, dt=0, cond=None, deployment="ops"):
    """
    Fetch data for the EPICS variable described in descr starting at
    time t0 (EPICS time) and going forward dt seconds. The values are
@@ -112,17 +111,12 @@ def fetch(descr, t0, dt=0, cond=None):
    if isinstance(t0, str):
       t0 = time_string_to_epics(t0)
    t1 = int(t0 + dt * epics_second)
-   archive = "ops"
+   archive = deployment
    if isinstance(descr, dict):
       host = descr['host']
       descr['deployment'] = archive
    else:
-      if t0 < opsmya_start:
-         archive = "history"
-         descriptor = lookup(descr, deployment="history")
-      else:
-         archive = "ops"
-         descriptor = lookup(descr)
+      descriptor = lookup(descr, deployment=archive)
       if 'host' in descriptor:
          descr = descriptor
          descr['deployment'] = archive

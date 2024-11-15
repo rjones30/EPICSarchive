@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # tagm_scalers.py - simple script to extract TAGM scaler rates 
 #                   from the EPICS archive and plot them.
@@ -32,7 +32,7 @@ def run_time(run):
    """
    db = rcdb.RCDBProvider(rcdb_source)
    cur = db.get_condition(run, "beam_on_current").value
-   print "run", run, "beam_on_current was", cur, "nA"
+   print("run", run, "beam_on_current was", cur, "nA")
    runobj = db.get_run(run)
    duration = (runobj.end_time - runobj.start_time).seconds
    return runobj.start_time.strftime("%Y-%m-%d %H:%M:%S"), duration
